@@ -33,7 +33,7 @@ public partial class Form1 : Form
         List<string> linesTmp = new List<string>();
         foreach (var line in lines)
         {
-            if (line != null && line.Contains(textBox_commandToUpdate.Text))
+            if (line != null && line.Contains(textBox_commandToUpdate.Text) && !line.Contains(textBox_commandToIgnire.Text))
             {
                 linesTmp.Add(textBox_insertBefore.Text);
                 linesTmp.Add(line);
@@ -44,6 +44,7 @@ public partial class Form1 : Form
                 linesTmp.Add(line ?? "");
             }
         }
+        linesTmp.Add(textBox_insertAfter.Text);
         lines.Clear();
         lines.AddRange(linesTmp.ToArray());
         textBox.Lines = lines.ToArray();
@@ -65,5 +66,6 @@ public partial class Form1 : Form
         textBox_insertBefore.Enabled = !checkBox_default.Checked;
         textBox_commandToUpdate.Enabled = !checkBox_default.Checked;
         textBox_insertAfter.Enabled = !checkBox_default.Checked;
+        textBox_commandToIgnire.Enabled = !checkBox_default.Checked;
     }
 }
