@@ -3,6 +3,7 @@ namespace UpdateGCode;
 public partial class Form1 : Form
 {
     private List<string> lines = new List<string>();
+    private string fileName;
     public Form1()
     {
         InitializeComponent();
@@ -13,6 +14,7 @@ public partial class Form1 : Form
         OpenFileDialog openFileDialog = new OpenFileDialog();
         if (openFileDialog.ShowDialog() == DialogResult.OK)
         {
+            fileName = openFileDialog.FileName;
             lines.Clear();
             FileStream stream = new FileStream(openFileDialog.FileName, FileMode.Open);
             StreamReader reader = new StreamReader(stream);
@@ -39,12 +41,16 @@ public partial class Form1 : Form
                 linesTmp.Add(line);
                 linesTmp.Add(textBox_insertAfter.Text);
             }
+            else if (line != null && line.Contains(textBox_endCommand.Text))
+            {
+                linesTmp.Add(textBox_insertBefore.Text);
+                linesTmp.Add(line);
+            }
             else
             {
                 linesTmp.Add(line ?? "");
             }
         }
-        linesTmp.Add(textBox_insertAfter.Text);
         lines.Clear();
         lines.AddRange(linesTmp.ToArray());
         textBox.Lines = lines.ToArray();
@@ -55,6 +61,7 @@ public partial class Form1 : Form
         SaveFileDialog saveFileDialog = new SaveFileDialog();
         saveFileDialog.OverwritePrompt = true;
         saveFileDialog.Filter = "GCode files (*.gc)|*.gc";
+        saveFileDialog.FileName = fileName;
         if (saveFileDialog.ShowDialog() == DialogResult.OK)
         {
             File.WriteAllLines(saveFileDialog.FileName, lines);
@@ -67,5 +74,7 @@ public partial class Form1 : Form
         textBox_commandToUpdate.Enabled = !checkBox_default.Checked;
         textBox_insertAfter.Enabled = !checkBox_default.Checked;
         textBox_commandToIgnire.Enabled = !checkBox_default.Checked;
+        textBox_endCommand.Enabled = !checkBox_default.Checked;
     }
+    
 }

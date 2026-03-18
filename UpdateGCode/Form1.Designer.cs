@@ -42,6 +42,8 @@ partial class Form1
         textBox_insertAfter = new System.Windows.Forms.TextBox();
         textBox_commandToIgnire = new System.Windows.Forms.TextBox();
         label4 = new System.Windows.Forms.Label();
+        textBox_endCommand = new System.Windows.Forms.TextBox();
+        label5 = new System.Windows.Forms.Label();
         SuspendLayout();
         // 
         // open_btn
@@ -132,7 +134,7 @@ partial class Form1
         // 
         // label3
         // 
-        label3.Location = new System.Drawing.Point(157, 234);
+        label3.Location = new System.Drawing.Point(157, 287);
         label3.Name = "label3";
         label3.Size = new System.Drawing.Size(100, 23);
         label3.TabIndex = 9;
@@ -141,7 +143,7 @@ partial class Form1
         // textBox_insertAfter
         // 
         textBox_insertAfter.Enabled = false;
-        textBox_insertAfter.Location = new System.Drawing.Point(157, 260);
+        textBox_insertAfter.Location = new System.Drawing.Point(157, 313);
         textBox_insertAfter.Name = "textBox_insertAfter";
         textBox_insertAfter.Size = new System.Drawing.Size(100, 27);
         textBox_insertAfter.TabIndex = 10;
@@ -164,11 +166,30 @@ partial class Form1
         label4.TabIndex = 11;
         label4.Text = "Command to ignore\r\n";
         // 
+        // textBox_endCommand
+        // 
+        textBox_endCommand.Enabled = false;
+        textBox_endCommand.Location = new System.Drawing.Point(157, 257);
+        textBox_endCommand.Name = "textBox_endCommand";
+        textBox_endCommand.Size = new System.Drawing.Size(100, 27);
+        textBox_endCommand.TabIndex = 14;
+        textBox_endCommand.Text = "M2";
+        // 
+        // label5
+        // 
+        label5.Location = new System.Drawing.Point(157, 231);
+        label5.Name = "label5";
+        label5.Size = new System.Drawing.Size(156, 23);
+        label5.TabIndex = 13;
+        label5.Text = "Command at the end";
+        // 
         // Form1
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         ClientSize = new System.Drawing.Size(800, 450);
+        Controls.Add(textBox_endCommand);
+        Controls.Add(label5);
         Controls.Add(textBox_commandToIgnire);
         Controls.Add(label4);
         Controls.Add(textBox_insertAfter);
@@ -186,6 +207,9 @@ partial class Form1
         ResumeLayout(false);
         PerformLayout();
     }
+
+    private System.Windows.Forms.TextBox textBox_endCommand;
+    private System.Windows.Forms.Label label5;
 
     private System.Windows.Forms.TextBox textBox_commandToIgnire;
     private System.Windows.Forms.Label label4;
